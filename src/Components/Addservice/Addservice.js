@@ -1,28 +1,40 @@
-import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import "./Addservice.css";
+import "./Servicedetails.css";
 const Addservice = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    // console.log(data);
-    axios.post("http://localhost:7000/addservice", data).then((res) => {
-      //   console.log(res);
-      reset();
-    });
+    fetch("http://localhost:7000/addservice", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((service) => {
+        if (service?.insertedId) {
+          alert("Sucessfully Addaded");
+          reset();
+        }
+      });
   };
   return (
-    <div className="add-service">
-      <h1>add service</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register("Name", { required: true, maxLength: 20 })}
-          placeholder="Name"
+    <div className="min-vh-100">
+      <h1 className="my-3">Add a Package</h1>
+      <form className="addService my-5" onSubmit={handleSubmit(onSubmit)}>
+        <input {...register("serviceName")} placeholder="enter a Package" />
+        <textarea
+          {...register("details")}
+          placeholder="enter Package details"
         />
-        <textarea {...register("discription")} placeholder="discription" />
-        <input type="number" {...register("price")} placeholder="price" />
-        <input {...register("img")} placeholder="image" />
-        <input type="submit" />
+        <input {...register("picture")} placeholder="enter a picture" />
+        <input
+          type="number"
+          {...register("price")}
+          placeholder="enter a price"
+        />
+        <input type="submit" value="ADD" />
       </form>
     </div>
   );

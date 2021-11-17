@@ -19,8 +19,6 @@ const useFirebase = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result.user);
-        // console.log(result.user);
-        //   console.log(user);
       })
       .catch((error) => {
         setError(error.message);
@@ -35,16 +33,16 @@ const useFirebase = () => {
     });
   }, []);
   //   logout
-  /* const logout = () => {
+  const logout = () => {
     signOut(auth).then(() => {
-      setUser("");
+      setUser({});
     });
-  }; */
+  };
   return {
     errors,
     user,
     googleSignin,
-    // logout,
+    logout,
   };
 };
 export default useFirebase;

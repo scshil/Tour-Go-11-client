@@ -1,0 +1,6 @@
+.buttons {
+  display: flex;
+  flex-direction: column;
+  color: tomato;
+  margin-right: 5px;
+}

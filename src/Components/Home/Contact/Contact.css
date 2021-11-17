@@ -1,12 +1,11 @@
-.add-service form {
+.contact {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
 }
-.add-service form input,
+.contact input,
 textarea {
-  width: 40%;
-  margin-bottom: 15px;
+  width: 50%;
+  margin-top: 10px;
 }
