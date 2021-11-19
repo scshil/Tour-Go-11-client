@@ -12,17 +12,22 @@ FirrebaseAuthentication();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [errors, setError] = useState("");
+  const [isloading, setisloading] = useState(true);
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
   //   google signin
-  const googleSignin = () => {
+  const googleSignin = (location, history) => {
+    setisloading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
+        const current = location?.state?.from || "/";
+        history.replace(current);
         setUser(result.user);
       })
       .catch((error) => {
         setError(error.message);
-      });
+      })
+      .finally(() => setisloading(false));
   };
   //   track on current user
   useEffect(() => {
@@ -30,19 +35,23 @@ const useFirebase = () => {
       if (user) {
         setUser(user);
       }
+      setisloading(false);
     });
   }, []);
   //   logout
   const logout = () => {
-    signOut(auth).then(() => {
-      setUser({});
-    });
+    signOut(auth)
+      .then(() => {
+        setUser({});
+      })
+      .finally(() => setisloading(false));
   };
   return {
     errors,
     user,
     googleSignin,
     logout,
+    isloading,
   };
 };
 export default useFirebase;

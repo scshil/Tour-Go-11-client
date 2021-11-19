@@ -1,11 +1,14 @@
 import React from "react";
 import { Col, Container, Row, Button, Image } from "react-bootstrap";
+import { useHistory, useLocation } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import login from "../../Picture/login.jpg";
 
 const Login = () => {
   const { googleSignin, user } = useAuth();
-
+  const location = useLocation();
+  const history = useHistory();
+  // console.log(user);
   return (
     <Container className=" ">
       <h1 className="mt-3 ">Please Login</h1>
@@ -20,7 +23,10 @@ const Login = () => {
             md={4}
             lg={6}
           >
-            <Button onClick={googleSignin} variant="secondary">
+            <Button
+              onClick={() => googleSignin(location, history)}
+              variant="secondary"
+            >
               Gmail
             </Button>
           </Col>

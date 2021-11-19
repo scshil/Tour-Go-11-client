@@ -8,7 +8,9 @@ import tetuliya from "../../../Picture/tetuliya.jpg";
 const Winteroffer = () => {
   return (
     <div>
-      <h6 className="my-3">Special Winter </h6>
+      <h4 className="my-3">Special Winter </h4>
+      <h6 className="fw-lighter">Booking will start after 7 December</h6>
+
       <Row className="my-5" xs={1} md={2} lg={3} className="g-4">
         <Col>
           <Card>

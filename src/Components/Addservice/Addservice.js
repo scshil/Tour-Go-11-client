@@ -4,7 +4,7 @@ import "./Servicedetails.css";
 const Addservice = () => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:7000/addservice", {
+    fetch("https://pure-crag-33813.herokuapp.com/addservice", {
       method: "POST",
       headers: {
         "content-type": "application/json",

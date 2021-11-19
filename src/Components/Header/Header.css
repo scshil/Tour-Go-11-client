@@ -1,6 +1,11 @@
-.buttons {
-  display: flex;
-  flex-direction: column;
-  color: tomato;
-  margin-right: 5px;
+.navlink {
+  text-decoration: none;
+  font-weight: 600;
+  color: rgb(2, 2, 2);
+}
+.navbar {
+  background-color: rgba(17, 209, 113, 0.192);
+}
+.active {
+  color: rgb(255, 174, 0);
 }

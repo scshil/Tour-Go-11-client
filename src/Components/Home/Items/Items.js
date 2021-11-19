@@ -4,19 +4,20 @@ import { useState } from "react";
 import { Card, Col, Container, Row, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const Packages = () => {
-  const [packages, setPackages] = useState([]);
+const Items = () => {
+  const [items, setItems] = useState([]);
   useEffect(() => {
     fetch("https://pure-crag-33813.herokuapp.com/services")
       .then((res) => res.json())
-      .then((data) => setPackages(data));
+      .then((data) => setItems(data));
   }, []);
-  // console.log(packages);
+  const showaitems = items.slice(3, 9);
+
   return (
-    <Container className="my-5">
-      <h1> Our All Packages</h1>
+    <Container className="mt-5">
+      <h1> Our Packages</h1>
       <Row xs={1} md={2} lg={3} className="g-4">
-        {packages.map((pack) => (
+        {showaitems.map((pack) => (
           <Col>
             <Card>
               <Card.Img variant="top" height="140px" src={pack.picture} />
@@ -31,9 +32,12 @@ const Packages = () => {
             </Card>
           </Col>
         ))}
+        <NavLink to="/package">
+          <Button variant="info">All Packages</Button>
+        </NavLink>
       </Row>
     </Container>
   );
 };
 
-export default Packages;
+export default Items;
